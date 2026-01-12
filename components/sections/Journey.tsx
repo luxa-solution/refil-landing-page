@@ -22,7 +22,7 @@ export default function Journey({ onJoinClick }: { onJoinClick: () => void }) {
               <h2 className="text-3xl font-bold mb-6">
                 Your gas ordering journey starts here
               </h2>
-
+              <p className="text-gray-600 mb-6">order gas with confidence using our all-in-one-platform. Select trusted vendors, order instantly, and enjoy reliable doorstep delivery, anytime you need it.</p>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center gap-3">
                   <Image
@@ -31,7 +31,7 @@ export default function Journey({ onJoinClick }: { onJoinClick: () => void }) {
                     width={20}
                     height={20}
                   />
-                  <span>Fast delivery</span>
+                  <span>Fast & Reliable Delivery</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Image
@@ -40,7 +40,7 @@ export default function Journey({ onJoinClick }: { onJoinClick: () => void }) {
                     width={20}
                     height={20}
                   />
-                  <span>Trusted vendors</span>
+                  <span>Flexible Ordering Options</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Image
@@ -49,7 +49,16 @@ export default function Journey({ onJoinClick }: { onJoinClick: () => void }) {
                     width={20}
                     height={20}
                   />
-                  <span>Flexible options</span>
+                  <span>Trusted Local Vendors</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Image
+                    src="/icons/checklist.png"
+                    alt="Check"
+                    width={20}
+                    height={20}
+                  />
+                  <span>Built for Homes & Businesses</span>
                 </li>
               </ul>
 
@@ -58,7 +67,7 @@ export default function Journey({ onJoinClick }: { onJoinClick: () => void }) {
 
             {/* Image column - Bottom on mobile, Right on desktop */}
             <div className="order-2 md:order-1 relative mt-8 md:mt-0">
-              {/* On desktop: Absolute bottom, On mobile: Normal flow */}
+              {/* On desktop */}
               <div className="md:absolute md:bottom-0 w-full">
                 <Image
                   src="/images/mobileImage-4.png"

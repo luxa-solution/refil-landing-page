@@ -24,12 +24,11 @@ export default function Features({ onJoinClick }: FeaturesProps) {
               </div>
               
               <h2 className="text-3xl font-bold mb-6">
-                Experience Seamless Gas Delivery
+                Grow Your Gas Scales With Our Platform
               </h2>
 
               <p className="text-gray-600 mb-6">
-                Our platform connects you with verified gas vendors in your area. 
-                Enjoy fast, reliable delivery with real-time tracking and secure payments.
+                grow your gas business with confidence using our all-in-one vendor platform, Receive order instantlyfrom nearby customers, manage request easily, and deliver gas reliably while we handle the technolog and customer reach.
               </p>
 
               <ul className="space-y-3 mb-8">
@@ -40,7 +39,7 @@ export default function Features({ onJoinClick }: FeaturesProps) {
                     width={20}
                     height={20}
                   />
-                  <span>Real-time order tracking</span>
+                  <span>Reach More Customers</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Image
@@ -49,7 +48,7 @@ export default function Features({ onJoinClick }: FeaturesProps) {
                     width={20}
                     height={20}
                   />
-                  <span>Secure payment options</span>
+                  <span>Real-Time Orders</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Image
@@ -58,7 +57,16 @@ export default function Features({ onJoinClick }: FeaturesProps) {
                     width={20}
                     height={20}
                   />
-                  <span>24/7 customer support</span>
+                  <span>Secure Payment</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Image
+                    src="/icons/checklist.png"
+                    alt="Check"
+                    width={20}
+                    height={20}
+                  />
+                  <span>Data insights</span>
                 </li>
               </ul>
 
