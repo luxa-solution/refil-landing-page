@@ -1,11 +1,19 @@
+"use client";
+
+import { useRef } from "react";
 import Image from "next/image";
 import Button from "../ui/Button";
+import { motion, useInView } from "framer-motion";
 
 interface FeaturesProps {
   onJoinClick: () => void;
 }
 
 export default function Features({ onJoinClick }: FeaturesProps) {
+  // Ref for scroll trigger
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
   return (
     <section className="w-full overflow-hidden my-8 sm:my-12">
       <div className="bg-gray-50 mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-auto xl:max-w-6xl rounded-2xl">
@@ -74,16 +82,33 @@ export default function Features({ onJoinClick }: FeaturesProps) {
             </div>
 
             {/* Image column - Bottom on mobile, Right on desktop */}
-            <div className="relative mt-8 md:mt-0">
+            <div ref={ref} className="relative mt-8 md:mt-0">
               {/* On desktop: Absolute bottom, On mobile: Normal flow */}
               <div className="md:absolute md:bottom-0 w-full">
-                <Image
-                  src="/images/mobileImage-4.png"
-                  alt="App Features"
-                  width={280}
-                  height={560}
-                  className="mx-auto max-w-full h-auto"
-                />
+                <motion.div
+                  initial={{ y: 100, opacity: 0, rotate: 0 }}
+                  animate={isInView ? { 
+                    y: 0, 
+                    opacity: 1,
+                    rotate: [0, -5, 5, -5, 5, 0] // Shake animation
+                  } : { y: 100, opacity: 0 }}
+                  transition={{ 
+                    y: { duration: 0.6 },
+                    rotate: { 
+                      delay: 0.6, 
+                      duration: 0.8,
+                      times: [0, 0.2, 0.4, 0.6, 0.8, 1]
+                    }
+                  }}
+                >
+                  <Image
+                    src="/images/mobileImage-4.png"
+                    alt="App Features"
+                    width={280}
+                    height={560}
+                    className="mx-auto max-w-full h-auto"
+                  />
+                </motion.div>
               </div>
             </div>
           </div>
