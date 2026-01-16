@@ -9,22 +9,26 @@ export default function Hero({ onJoinClick }: HeroProps) {
   return (
     <section className="text-center px-4 sm:px-6 pt-12 sm:pt-16 pb-0 bg-[url('/images/hero.png')] bg-cover bg-center relative min-h-150 sm:min-h-175 mb-8 sm:mb-12">
       {/* Content area at top */}
+      {/* Updated Launching Soon Badge */}
       <div className="relative z-10">
-        {/* Updated Launching Soon Badge */}
-        <div className="inline-flex items-center justify-center gap-2 mb-4 rounded-full bg-orange-100 px-4 py-2">
-          <div className="w-3 h-3 rounded-full bg-orange-500 relative flex items-center justify-center">
-            <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
+        <div className="inline-flex items-center justify-center mb-4 rounded-full bg-white p-2">
+          <div className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-100 px-4 py-2">
+            <div className="w-6 h-6 rounded-full bg-orange-500 relative flex items-center justify-center">
+              <div className="w-4 h-4 rounded-full bg-black"></div>
+            </div>
+            <span className="text-sm text-[#262626] font-medium">
+              Launching soon
+            </span>
           </div>
-          <span className="text-sm text-orange-500 font-medium">Launching soon</span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold max-w-3xl mx-auto">
-          Your Preferred Gas Vendor <br /> Delivered to Your Door
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold max-w-4xl mx-auto">
+          Get gas from your preferred vendor, <br /> delivered to your door
         </h1>
 
         <p className="mt-4 text-sm sm:text-base text-gray-600 max-w-xl mx-auto">
-          Order cooking gas safely from verified local vendors, choose who you trust,
-          and get fast doorstep delivery without stress.
+          Order cooking gas safely from verified local vendors, choose who you
+          trust, and get fast doorstep delivery without stress.
         </p>
 
         <div className="mt-6">
@@ -70,5 +74,3 @@ export default function Hero({ onJoinClick }: HeroProps) {
     </section>
   );
 }
-
-

@@ -26,19 +26,19 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <Link href="/">
             <Image
-              src="/icons/refil-logo.png"
+              src="/icons/refil_logo.png"
               alt="Refil logo"
-              width={90}
-              height={30}
-              className="max-w-full h-auto"
+              width={40}
+              height={70}
+              className="max-w-full h-16"
             />
           </Link>
 
           {/* Desktop Menu - INCREASED GAP */}
           <ul className="hidden md:flex gap-10 text-sm text-gray-700">
             <li>
-              <Link 
-                href="/" 
+              <Link
+                href="/"
                 className={`transition-colors duration-200 hover:text-orange-500 ${
                   isActive("/") ? "text-orange-500 font-medium" : ""
                 }`}
@@ -46,8 +46,8 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
                 Home
               </Link>
             </li>
-            <li>
-              <Link 
+            {/* <li>
+              <Link
                 href="/vendors"
                 className={`transition-colors duration-200 hover:text-orange-500 ${
                   isActive("/vendors") ? "text-orange-500 font-medium" : ""
@@ -55,9 +55,9 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
               >
                 Vendors
               </Link>
-            </li>
-            <li>
-              <Link 
+            </li> */}
+            {/* <li>
+              <Link
                 href="/riders"
                 className={`transition-colors duration-200 hover:text-orange-500 ${
                   isActive("/riders") ? "text-orange-500 font-medium" : ""
@@ -65,9 +65,9 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
               >
                 Riders
               </Link>
-            </li>
+            </li> */}
             <li>
-              <Link 
+              <Link
                 href="/contact"
                 className={`transition-colors duration-200 hover:text-orange-500 ${
                   isActive("/contact") ? "text-orange-500 font-medium" : ""
@@ -158,9 +158,3 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
     </>
   );
 }
-
-
-
-
-
-

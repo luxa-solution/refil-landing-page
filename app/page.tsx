@@ -16,43 +16,39 @@ export default function Home() {
   return (
     <>
       <Navbar onJoinClick={() => setOpenModal(true)} />
-      
+
       {/* Hero Section */}
       <Hero onJoinClick={() => setOpenModal(true)} />
-      
+
       {/* Add gap after Hero */}
       <div className="mt-8 sm:mt-12"></div>
-      
+
       {/* Exclusive Benefits Section - NEW */}
       <ExclusiveBenefits onJoinClick={() => setOpenModal(true)} />
-      
+
       {/* Add gap after ExclusiveBenefits */}
       <div className="mt-8 sm:mt-12"></div>
-      
+
       {/* Journey Section */}
       <Journey onJoinClick={() => setOpenModal(true)} />
-      
+
       {/* Add gap after Journey */}
       <div className="mt-8 sm:mt-12"></div>
-      
+
       {/* Features Section */}
       <Features onJoinClick={() => setOpenModal(true)} />
-      
+
       {/* Add gap after Features */}
       <div className="mt-8 sm:mt-12"></div>
-      
+
       {/* FAQ Section */}
       <FAQ />
-      
+
       {/* Footer */}
       <Footer />
-      
+
       {/* Waitlist Modal */}
       <WaitlistModal open={openModal} setOpen={setOpenModal} />
     </>
   );
 }
-
-
-
-
