@@ -1,11 +1,19 @@
+"use client";
+
+import { useRef } from "react";
 import Image from "next/image";
 import Button from "../ui/Button";
+import { motion, useInView } from "framer-motion";
 
 interface HeroProps {
   onJoinClick: () => void;
 }
 
 export default function Hero({ onJoinClick }: HeroProps) {
+  // Ref for scroll trigger
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
   return (
     <section className="text-center px-4 sm:px-6 pt-12 sm:pt-16 pb-0 bg-[url('/images/hero.png')] bg-cover bg-center relative min-h-150 sm:min-h-175 mb-8 sm:mb-12">
       {/* Content area at top */}
@@ -22,8 +30,10 @@ export default function Hero({ onJoinClick }: HeroProps) {
           </div>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold max-w-4xl mx-auto">
-          Get gas from your preferred vendor, <br /> delivered to your door
+        <h1 className="text-3xl sm:text-4xl md:text-4xl font-bold max-w-2xl mx-auto">
+          Get gas from your preferred vendor
+          <br />
+          Delivered to your door
         </h1>
 
         <p className="mt-4 text-sm sm:text-base text-gray-600 max-w-xl mx-auto">
@@ -36,10 +46,18 @@ export default function Hero({ onJoinClick }: HeroProps) {
         </div>
       </div>
 
-      {/* Mobile images positioned absolutely at the very bottom - ALL VISIBLE ON MOBILE */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full flex justify-center items-end overflow-hidden px-4">
-        {/* First Mobile Image */}
-        <div className="relative mr-2 sm:mr-12">
+      {/* Mobile images with animation */}
+      <div
+        ref={ref}
+        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full flex justify-center items-end overflow-hidden px-4"
+      >
+        {/* First Mobile Image - Slides up from bottom */}
+        <motion.div
+          className="relative mr-2 sm:mr-12"
+          initial={{ y: 100, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
           <Image
             src="/images/mobileImage-1.png"
             alt="Gas vendor app screen"
@@ -47,10 +65,15 @@ export default function Hero({ onJoinClick }: HeroProps) {
             height={360}
             className="w-32 sm:w-45 h-auto"
           />
-        </div>
+        </motion.div>
 
-        {/* Main Center Mobile Image */}
-        <div className="relative mx-2 sm:mx-6">
+        {/* Main Center Mobile Image - Slides up with more delay */}
+        <motion.div
+          className="relative mx-2 sm:mx-6"
+          initial={{ y: 100, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           <Image
             src="/images/mobileImage-2.png"
             alt="Refil mobile app"
@@ -58,10 +81,15 @@ export default function Hero({ onJoinClick }: HeroProps) {
             height={400}
             className="w-36 sm:w-50 h-auto"
           />
-        </div>
+        </motion.div>
 
-        {/* Third Mobile Image */}
-        <div className="relative ml-2 sm:ml-12">
+        {/* Third Mobile Image - Slides up with most delay */}
+        <motion.div
+          className="relative ml-2 sm:ml-12"
+          initial={{ y: 100, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           <Image
             src="/images/mobileImage-3.png"
             alt="Order gas screen"
@@ -69,7 +97,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
             height={360}
             className="w-32 sm:w-45 h-auto"
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
