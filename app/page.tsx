@@ -9,12 +9,16 @@ import Features from "@/components/sections/Features";
 import FAQ from "@/components/sections/FAQ";
 import Footer from "@/components/layout/Footer";
 import WaitlistModal from "@/components/ui/WaitlistModal";
+import Providers from "@/components/layout/Providers";
+
+
 
 export default function Home() {
-  const [openModal, setOpenModal] = useState(false);
+  const [ openModal, setOpenModal ] = useState( false );
 
   return (
     <>
+      <Providers />
       <Navbar onJoinClick={() => setOpenModal(true)} />
 
       {/* Hero Section */}
