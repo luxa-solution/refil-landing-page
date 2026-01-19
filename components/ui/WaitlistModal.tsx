@@ -16,7 +16,8 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
     type: "success" | "error" | null;
     message: string;
   }>({ type: null, message: "" });
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   if (!open) return null;
 
@@ -26,6 +27,7 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email || !emailRegex.test(email)) {
       setStatus({ type: "error", message: "Please enter a valid email address" });
@@ -34,7 +36,6 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
 
     setLoading(true);
     setStatus({ type: null, message: "" });
-
 
     timeoutRef.current = setTimeout(() => {
       if (loading) {
@@ -48,9 +49,9 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
     try {
       const result = await joinWaitlist(email);
       
-      // Clear timeout if request completes
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
       }
       
       if (result.success) {
@@ -73,6 +74,7 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
     } catch (error) {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
       }
       
       setStatus({ 
@@ -87,6 +89,7 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
   const handleClose = () => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
     }
     
     if (!loading) {
@@ -131,7 +134,7 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
         </h2>
 
         <p className="text-gray-600 mb-6 text-center">
-          Be among the first to access Refil and receive updates on our launch.
+          Be among the first to access Refil and receive updates on our launch and new features.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -167,7 +170,7 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
 
           {/* Status Message */}
           {status.type && (
-            <div className={`p-3 rounded-lg text-sm text-center animate-fadeIn ${
+            <div className={`p-3 rounded-lg text-sm text-center ${
               status.type === "success" 
                 ? "bg-green-50 text-green-700 border border-green-200" 
                 : "bg-red-50 text-red-700 border border-red-200"
