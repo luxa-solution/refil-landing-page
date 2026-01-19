@@ -1,6 +1,6 @@
 "use client";
 
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState, useRef } from "react";
 import Image from "next/image";
 import { joinWaitlist } from "@/lib/api";
 
@@ -16,13 +16,18 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
     type: "success" | "error" | null;
     message: string;
   }>({ type: null, message: "" });
+  
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   if (!open) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic email validation
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email || !emailRegex.test(email)) {
       setStatus({ type: "error", message: "Please enter a valid email address" });
@@ -32,26 +37,46 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
     setLoading(true);
     setStatus({ type: null, message: "" });
 
+    timeoutRef.current = setTimeout(() => {
+      if (loading) {
+        setStatus({ 
+          type: "error", 
+          message: "⏳ Taking longer than expected. Please wait..." 
+        });
+      }
+    }, 4000);
+
     try {
       const result = await joinWaitlist(email);
+      
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
       
       if (result.success) {
         setStatus({ 
           type: "success", 
-          message: result.message || "Thank you! You have been added to our waitlist." 
+          message: result.message || "Thank you! You're on the waitlist." 
         });
         setEmail("");
+        
         setTimeout(() => {
           setOpen(false);
           setStatus({ type: null, message: "" });
-        }, 3000);
+        }, 2500);
       } else {
         setStatus({ 
           type: "error", 
-          message: result.message || "Something went wrong. Please try again." 
+          message: result.message || "Unable to process your request." 
         });
       }
     } catch (error) {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+      
       setStatus({ 
         type: "error", 
         message: "An unexpected error occurred. Please try again." 
@@ -62,6 +87,11 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
   };
 
   const handleClose = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    
     if (!loading) {
       setOpen(false);
       setEmail("");
@@ -138,6 +168,7 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
             </div>
           </div>
 
+          {/* Status Message */}
           {status.type && (
             <div className={`p-3 rounded-lg text-sm text-center ${
               status.type === "success" 
@@ -162,7 +193,7 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <span>Joining waitlist...</span>
+                <span>Processing...</span>
               </>
             ) : (
               <span>Join the waitlist</span>
