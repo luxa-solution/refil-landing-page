@@ -36,7 +36,7 @@ export default function Features({ onJoinClick }: FeaturesProps) {
               </h2>
 
               <p className="text-gray-600 mb-6">
-                grow your gas business with confidence using our all-in-one vendor platform, Receive order instantlyfrom nearby customers, manage request easily, and deliver gas reliably while we handle the technolog and customer reach.
+                grow your gas business with confidence using our all-in-one vendor platform, Receive order instantly from nearby customers, manage request easily, and deliver gas reliably while we handle the technolog and customer reach.
               </p>
 
               <ul className="space-y-3 mb-8">

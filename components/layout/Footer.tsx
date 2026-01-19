@@ -10,10 +10,10 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2">
               <Image
-                src="/icons/refil-logo.png"
+                src="/icons/refil_logo.png"
                 alt="Refil"
-                width={90}
-                height={32}
+                width={35}
+                height={30}
               />
             </div>
 
