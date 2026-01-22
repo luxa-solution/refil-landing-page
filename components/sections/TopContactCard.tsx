@@ -19,9 +19,9 @@ export default function TopContactCard({
 }: TopContactCardProps) {
   return (
     <div className="bg-gray-50 rounded-3xl py-16 px-6 text-center shadow-[0_20px_60px_rgba(0,0,0,0.08)] h-full flex flex-col justify-center">
-      {/* Heading container - centered with relative positioning */}
+      {/* Heading container  */}
       <div className="relative inline-block text-left mx-auto">
-        {/* Top text (FAQs or Contact Us) positioned above heading */}
+
         {topText && (
           <span className={`absolute -top-6 text-sm font-semibold ${topTextColor}`}>
             {topText}
@@ -41,9 +41,7 @@ export default function TopContactCard({
         )}
       </div>
 
-      {/* ICONS - Centered below */}
       <div className="flex justify-center items-center gap-4 mt-12">
-        {/* Left icon - MEDIUM */}
         <div className="w-10 h-10 flex items-center justify-center">
           <Image 
             src="/icons/left-icon.png" 
@@ -54,7 +52,6 @@ export default function TopContactCard({
           />
         </div>
         
-        {/* Middle icon - SMALLEST */}
         <div className="w-8 h-8 flex items-center justify-center">
           <Image 
             src="/icons/right-icon.png" 
@@ -65,7 +62,6 @@ export default function TopContactCard({
           />
         </div>
         
-        {/* Right icon - MEDIUM */}
         <div className="w-10 h-10 flex items-center justify-center">
           <Image 
             src="/icons/middle-icon.png" 
