@@ -14,16 +14,7 @@ export default function FaqItem({ question, answer, icon }: FaqItemProps) {
   const [hasError, setHasError] = useState(false);
 
   return (
-    <div
-      className="
-        bg-gray-100
-        rounded-full
-        px-6
-        py-5
-        shadow-[0_6px_24px_rgba(0,0,0,0.06)]
-        transition
-      "
-    >
+    <div className="bg-gray-100 rounded-full px-6 py-5 shadow-[0_6px_24px_rgba(0,0,0,0.06)] transition">
       <button
         onClick={() => setOpen(!open)}
         aria-expanded={open}
@@ -31,19 +22,19 @@ export default function FaqItem({ question, answer, icon }: FaqItemProps) {
       >
         <div className="flex items-center gap-4">
           {/* Icon with error handling */}
-          <div className="w-8 h-8 flex-shrink-0">
+          <div className="size-8 shrink-0">
             {!hasError && icon ? (
               <Image
                 src={icon}
                 alt="FAQ icon"
                 width={32}
                 height={32}
-                className="w-full h-full object-contain"
+                className="size-full object-contain"
                 onError={() => setHasError(true)}
                 onLoad={() => setHasError(false)}
               />
             ) : (
-              <div className="w-full h-full rounded-full bg-orange-500 flex items-center justify-center">
+              <div className="size-full rounded-full bg-orange-500 flex items-center justify-center">
                 <span className="text-white text-sm font-bold">
                   {icon?.match(/icon-(\d+)/)?.[1] || "?"}
                 </span>

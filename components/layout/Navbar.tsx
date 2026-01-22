@@ -14,7 +14,6 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  // Function to check if link is active
   const isActive = (path: string) => {
     return pathname === path;
   };
@@ -34,7 +33,7 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
             />
           </Link>
 
-          {/* Desktop Menu - INCREASED GAP */}
+          {/* Desktop Menu  */}
           <ul className="hidden md:flex gap-10 text-sm text-gray-700">
             <li>
               <Link

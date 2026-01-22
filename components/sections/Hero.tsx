@@ -10,14 +10,12 @@ interface HeroProps {
 }
 
 export default function Hero({ onJoinClick }: HeroProps) {
-  // Ref for scroll trigger
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
     <section className="text-center px-4 sm:px-6 pt-12 sm:pt-16 pb-0 bg-[url('/images/hero.png')] bg-cover bg-center relative min-h-150 sm:min-h-175 mb-8 sm:mb-12">
-      {/* Content area at top */}
-      {/* Updated Launching Soon Badge */}
+      {/* Launching Soon Badge */}
       <div className="relative z-10">
         <div className="inline-flex items-center justify-center mb-4 rounded-full bg-white p-2">
           <div className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-100 px-4 py-2">
@@ -67,7 +65,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
           />
         </motion.div>
 
-        {/* Main Center Mobile Image - Slides up with more delay */}
+        {/* Main Center Mobile Image */}
         <motion.div
           className="relative mx-2 sm:mx-6"
           initial={{ y: 100, opacity: 0 }}
@@ -83,7 +81,7 @@ export default function Hero({ onJoinClick }: HeroProps) {
           />
         </motion.div>
 
-        {/* Third Mobile Image - Slides up with most delay */}
+        {/* Third Mobile Image */}
         <motion.div
           className="relative ml-2 sm:ml-12"
           initial={{ y: 100, opacity: 0 }}
