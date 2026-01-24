@@ -1,7 +1,7 @@
 "use client";
 
 import { Dispatch, SetStateAction, useState, useRef } from "react";
-import Image from "next/image";
+import { FaUser, FaEnvelope, FaPhone, FaTimes } from "react-icons/fa";
 import { joinWaitlist } from "@/lib/api";
 
 interface ModalProps {
@@ -10,7 +10,12 @@ interface ModalProps {
 }
 
 export default function WaitlistModal({ open, setOpen }: ModalProps) {
-  const [email, setEmail] = useState("");
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    phone: ""
+  });
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<{
     type: "success" | "error" | null;
@@ -21,6 +26,13 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
 
   if (!open) return null;
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -29,8 +41,30 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || !emailRegex.test(email)) {
+    if (!formData.first_name.trim()) {
+      setStatus({ type: "error", message: "Please enter your first name" });
+      return;
+    }
+    if (!formData.last_name.trim()) {
+      setStatus({ type: "error", message: "Please enter your last name" });
+      return;
+    }
+    if (!formData.email || !emailRegex.test(formData.email)) {
       setStatus({ type: "error", message: "Please enter a valid email address" });
+      return;
+    }
+    if (!formData.phone.trim()) {
+      setStatus({ type: "error", message: "Please enter your phone number" });
+      return;
+    }
+
+    // Nigerian phone validation
+    const phone = formData.phone.trim().replace(/[^\d+]/g, '');
+    if (!phone.match(/^(\+234|0)[789]\d{9}$/) && !phone.match(/^[789]\d{9}$/)) {
+      setStatus({ 
+        type: "error", 
+        message: "Please enter a valid Nigerian phone number (e.g., 08012345678 or +2348012345678)" 
+      });
       return;
     }
 
@@ -47,7 +81,7 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
     }, 4000);
 
     try {
-      const result = await joinWaitlist(email);
+      const result = await joinWaitlist(formData);
       
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
@@ -57,9 +91,14 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
       if (result.success) {
         setStatus({ 
           type: "success", 
-          message: result.message || "Thank you! You're on the waitlist." 
+          message: result.message || "🎉 Thank you! You're on the waitlist." 
         });
-        setEmail("");
+        setFormData({
+          first_name: "",
+          last_name: "",
+          email: "",
+          phone: ""
+        });
         
         setTimeout(() => {
           setOpen(false);
@@ -94,7 +133,12 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
     
     if (!loading) {
       setOpen(false);
-      setEmail("");
+      setFormData({
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone: ""
+      });
       setStatus({ type: null, message: "" });
     }
   };
@@ -117,7 +161,7 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
           className="absolute right-4 top-4 text-xl text-gray-500 hover:text-gray-700 transition"
           disabled={loading}
         >
-          ✕
+          <FaTimes />
         </button>
 
         <div className="text-center mb-4">
@@ -138,27 +182,97 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* First Name */}
+          <div>
+            <label htmlFor="first-name" className="block text-sm font-medium text-gray-700 mb-2 text-left">
+              First Name *
+            </label>
+            <div className="relative">
+              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                <FaUser size={20} />
+              </div>
+              <input
+                id="first-name"
+                name="first_name"
+                type="text"
+                placeholder="John"
+                value={formData.first_name}
+                onChange={handleChange}
+                className="w-full border border-gray-300 rounded-full pl-12 pr-4 py-3
+                focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 shadow-sm
+                disabled:bg-gray-100 disabled:cursor-not-allowed"
+                disabled={loading}
+                required
+              />
+            </div>
+          </div>
+
+          {/* Last Name */}
+          <div>
+            <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 mb-2 text-left">
+              Last Name *
+            </label>
+            <div className="relative">
+              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                <FaUser size={20} />
+              </div>
+              <input
+                id="last-name"
+                name="last_name"
+                type="text"
+                placeholder="Doe"
+                value={formData.last_name}
+                onChange={handleChange}
+                className="w-full border border-gray-300 rounded-full pl-12 pr-4 py-3
+                focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 shadow-sm
+                disabled:bg-gray-100 disabled:cursor-not-allowed"
+                disabled={loading}
+                required
+              />
+            </div>
+          </div>
+
+          {/* Email */}
           <div>
             <label htmlFor="waitlist-email" className="block text-sm font-medium text-gray-700 mb-2 text-left">
-              Email
+              Email *
             </label>
-            
             <div className="relative">
-              <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                <Image
-                  src="/icons/mail-icon.png"
-                  alt="Email"
-                  width={20}
-                  height={20}
-                />
+              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                <FaEnvelope size={20} />
               </div>
               <input
                 id="waitlist-email"
+                name="email"
                 type="email"
-                aria-label="Email address"
-                placeholder="johnmercy03@gmail.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                placeholder="john.doe@example.com"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full border border-gray-300 rounded-full pl-12 pr-4 py-3
+                focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 shadow-sm
+                disabled:bg-gray-100 disabled:cursor-not-allowed"
+                disabled={loading}
+                required
+              />
+            </div>
+          </div>
+
+          {/* Phone */}
+          <div>
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2 text-left">
+              Phone Number *
+            </label>
+            <div className="relative">
+              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                <FaPhone size={20} />
+              </div>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="08012345678"
+                value={formData.phone}
+                onChange={handleChange}
                 className="w-full border border-gray-300 rounded-full pl-12 pr-4 py-3
                 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 shadow-sm
                 disabled:bg-gray-100 disabled:cursor-not-allowed"
@@ -170,7 +284,7 @@ export default function WaitlistModal({ open, setOpen }: ModalProps) {
 
           {/* Status Message */}
           {status.type && (
-            <div className={`p-3 rounded-lg text-sm text-center ${
+            <div className={`p-3 rounded-lg text-sm text-center animate-fadeIn ${
               status.type === "success" 
                 ? "bg-green-50 text-green-700 border border-green-200" 
                 : "bg-red-50 text-red-700 border border-red-200"
