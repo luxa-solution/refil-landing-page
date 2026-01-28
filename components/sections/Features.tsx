@@ -25,44 +25,9 @@ export default function Features({ onJoinClick }: FeaturesProps) {
     <section className="w-full overflow-hidden my-8 sm:my-12">
       <div className="bg-gray-50 mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-auto xl:max-w-6xl rounded-2xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 md:pt-12 pb-0">
-          {/* Mobile: Stacked layout, Desktop: Grid layout */}
           <div className="flex flex-col md:grid md:grid-cols-2 md:items-end">
             
-            {/* IMAGE COLUMN  */}
-            <div ref={ref} className="relative mt-8 md:mt-0">
-              <div className="md:absolute md:bottom-0 w-full">
-                <motion.div
-                  initial={{ y: 100, opacity: 0, rotate: 0 }}
-                  animate={isInView ? { 
-                    y: 0, 
-                    opacity: 1,
-                    rotate: [0, -5, 5, -5, 5, 0]
-                  } : { y: 100, opacity: 0 }}
-                  transition={{ 
-                    y: { 
-                      duration: 0.6,
-                      ease: [0.21, 0.47, 0.32, 0.98]
-                    },
-                    rotate: { 
-                      delay: 0.6, 
-                      duration: 0.8,
-                      times: [0, 0.2, 0.4, 0.6, 0.8, 1],
-                      ease: "easeInOut"
-                    }
-                  }}
-                >
-                  <Image
-                    src="/images/mobileImage-4.png"
-                    alt="App Features"
-                    width={280}
-                    height={560}
-                    className="mx-auto max-w-full h-auto"
-                  />
-                </motion.div>
-              </div>
-            </div>
-
-            {/* TEXT COLUMN  */}
+            {/* TEXT COLUMN */}
             <ScrollReveal direction="right" delay={0.1}>
               <div className="pb-8 md:pb-12">
                 <div className="mb-6">
@@ -113,6 +78,40 @@ export default function Features({ onJoinClick }: FeaturesProps) {
                 </ScrollReveal>
               </div>
             </ScrollReveal>
+
+            {/* IMAGE COLUMN  */}
+            <div ref={ref} className="relative mt-8 md:mt-0">
+              <div className="md:absolute md:bottom-0 w-full">
+                <motion.div
+                  initial={{ y: 100, opacity: 0, rotate: 0 }}
+                  animate={isInView ? { 
+                    y: 0, 
+                    opacity: 1,
+                    rotate: [0, -5, 5, -5, 5, 0]
+                  } : { y: 100, opacity: 0 }}
+                  transition={{ 
+                    y: { 
+                      duration: 0.6,
+                      ease: [0.21, 0.47, 0.32, 0.98]
+                    },
+                    rotate: { 
+                      delay: 0.6, 
+                      duration: 0.8,
+                      times: [0, 0.2, 0.4, 0.6, 0.8, 1],
+                      ease: "easeInOut"
+                    }
+                  }}
+                >
+                  <Image
+                    src="/images/mobileImage-4.png"
+                    alt="App Features"
+                    width={280}
+                    height={560}
+                    className="mx-auto max-w-full h-auto"
+                  />
+                </motion.div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
