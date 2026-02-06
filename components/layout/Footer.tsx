@@ -39,7 +39,7 @@ export default function Footer() {
                 
                 {/* Instagram */}
                 <a 
-                  href="https://www.instagram.com/refil.gas?utm_source=ig_web_button_share_sheet&igsh=ZDNIZDc0MzlxNw==" 
+                  href="https://www.instagram.com/refil.gas" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="hover:opacity-80 transition-opacity hover:scale-110 transform duration-200"
