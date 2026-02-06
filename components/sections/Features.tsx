@@ -28,7 +28,11 @@ export default function Features({ onJoinClick }: FeaturesProps) {
           <div className="flex flex-col md:grid md:grid-cols-2 md:items-end">
             
             {/* TEXT COLUMN */}
-            <ScrollReveal direction="right" delay={0.1}>
+            <ScrollReveal 
+              direction="left" 
+              delay={0.1}
+              className="md:order-2" 
+            >
               <div className="pb-8 md:pb-12">
                 <div className="mb-6">
                   <Image
@@ -80,7 +84,10 @@ export default function Features({ onJoinClick }: FeaturesProps) {
             </ScrollReveal>
 
             {/* IMAGE COLUMN  */}
-            <div ref={ref} className="relative mt-8 md:mt-0">
+            <div 
+              ref={ref} 
+              className="relative mt-8 md:mt-0 md:order-1" 
+            >
               <div className="md:absolute md:bottom-0 w-full">
                 <motion.div
                   initial={{ y: 100, opacity: 0, rotate: 0 }}

@@ -112,7 +112,7 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
               Home
             </Link>
 
-            <Link
+            {/*<Link
               href="/vendors"
               onClick={() => setMenuOpen(false)}
               className={`block text-4xl font-bold ${
@@ -120,9 +120,9 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
               }`}
             >
               Vendors
-            </Link>
+            </Link>*/}
 
-            <Link
+            {/*<Link
               href="/riders"
               onClick={() => setMenuOpen(false)}
               className={`block text-4xl font-bold ${
@@ -130,7 +130,7 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
               }`}
             >
               Riders
-            </Link>
+            </Link>*/}
 
             <Link
               href="/contact"
