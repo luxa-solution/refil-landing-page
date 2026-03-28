@@ -45,26 +45,6 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
                 Home
               </Link>
             </li>
-            {/* <li>
-              <Link
-                href="/vendors"
-                className={`transition-colors duration-200 hover:text-orange-500 ${
-                  isActive("/vendors") ? "text-orange-500 font-medium" : ""
-                }`}
-              >
-                Vendors
-              </Link>
-            </li> */}
-            {/* <li>
-              <Link
-                href="/riders"
-                className={`transition-colors duration-200 hover:text-orange-500 ${
-                  isActive("/riders") ? "text-orange-500 font-medium" : ""
-                }`}
-              >
-                Riders
-              </Link>
-            </li> */}
             <li>
               <Link
                 href="/contact"
@@ -112,26 +92,6 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
               Home
             </Link>
 
-            {/*<Link
-              href="/vendors"
-              onClick={() => setMenuOpen(false)}
-              className={`block text-4xl font-bold ${
-                isActive("/vendors") ? "text-orange-500" : "text-gray-900"
-              }`}
-            >
-              Vendors
-            </Link>*/}
-
-            {/*<Link
-              href="/riders"
-              onClick={() => setMenuOpen(false)}
-              className={`block text-4xl font-bold ${
-                isActive("/riders") ? "text-orange-500" : "text-gray-900"
-              }`}
-            >
-              Riders
-            </Link>*/}
-
             <Link
               href="/contact"
               onClick={() => setMenuOpen(false)}
@@ -142,12 +102,13 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
               Contact Us
             </Link>
 
+            {/* Push the button down with mt-8 */}
             <button
               onClick={() => {
                 setMenuOpen(false);
                 onJoinClick();
               }}
-              className="w-full rounded-full bg-orange-500 py-5 text-white text-lg font-medium"
+              className="w-full rounded-full bg-orange-500 py-5 text-white text-lg font-medium mt-8"
             >
               Join the waitlist
             </button>
