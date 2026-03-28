@@ -101,11 +101,11 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
             ✕
           </button>
 
-          <div className="mt-24 space-y-12 wrap-break-word">
+          <div className="mt-24 space-y-3 wrap-break-word">
             <Link
               href="/"
               onClick={() => setMenuOpen(false)}
-              className={`block text-4xl font-bold ${
+              className={`block text-2xl font-bold ${
                 isActive("/") ? "text-orange-500" : "text-gray-900"
               }`}
             >
@@ -135,7 +135,7 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
             <Link
               href="/contact"
               onClick={() => setMenuOpen(false)}
-              className={`block text-4xl font-bold ${
+              className={`block text-2xl font-bold ${
                 isActive("/contact") ? "text-orange-500" : "text-gray-900"
               }`}
             >
