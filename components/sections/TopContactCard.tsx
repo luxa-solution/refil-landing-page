@@ -18,18 +18,18 @@ export default function TopContactCard({
   subtitleColor = "text-blue-600"
 }: TopContactCardProps) {
   return (
-    <div className="bg-gray-50 rounded-3xl py-16 px-6 text-center shadow-[0_20px_60px_rgba(0,0,0,0.08)] h-full flex flex-col justify-center">
-      {/* Heading container  */}
+    <div className="bg-gray-50 rounded-3xl p-10 text-center h-full flex flex-col justify-center min-h-[400px] md:min-h-[500px]">
+      {/* Heading container - centered with relative positioning */}
       <div className="relative inline-block text-left mx-auto">
-
+        {/* Top text (FAQs or Contact Us) positioned above heading */}
         {topText && (
-          <span className={`absolute -top-6 text-sm font-semibold ${topTextColor}`}>
+          <span className={`absolute -top-8 left-0 right-0 text-sm font-semibold ${topTextColor}`}>
             {topText}
           </span>
         )}
         
         {/* Main title */}
-        <h2 className={`text-3xl md:text-4xl font-bold ${titleColor}`}>
+        <h2 className={`text-3xl md:text-4xl font-bold ${titleColor} mb-4`}>
           {title}
         </h2>
         
@@ -41,33 +41,37 @@ export default function TopContactCard({
         )}
       </div>
 
-      <div className="flex justify-center items-center gap-4 mt-12">
-        <div className="w-10 h-10 flex items-center justify-center">
+      {/* ICONS - Centered below with more spacing */}
+      <div className="flex justify-center items-center gap-6 mt-16">
+        {/* Left icon */}
+        <div className="w-12 h-12 flex items-center justify-center">
           <Image 
             src="/icons/left-icon.png" 
             alt="" 
-            width={40} 
-            height={40}
+            width={48} 
+            height={48}
             className="w-full h-full object-contain"
           />
         </div>
         
-        <div className="w-8 h-8 flex items-center justify-center">
+        {/* Middle icon */}
+        <div className="w-10 h-10 flex items-center justify-center">
           <Image 
             src="/icons/right-icon.png" 
             alt="" 
-            width={32} 
-            height={32}
+            width={40} 
+            height={40}
             className="w-full h-full object-contain"
           />
         </div>
         
-        <div className="w-10 h-10 flex items-center justify-center">
+        {/* Right icon */}
+        <div className="w-12 h-12 flex items-center justify-center">
           <Image 
             src="/icons/middle-icon.png" 
             alt="" 
-            width={40} 
-            height={40}
+            width={48} 
+            height={48}
             className="w-full h-full object-contain"
           />
         </div>

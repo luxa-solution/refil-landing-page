@@ -1,3 +1,4 @@
+// components/sections/Hero.tsx
 "use client";
 
 import { useRef } from "react";
@@ -15,7 +16,10 @@ export default function Hero({ onJoinClick }: HeroProps) {
 
   return (
     <section className="text-center px-4 sm:px-6 pt-12 sm:pt-16 pb-0 bg-[url('/images/hero.png')] bg-cover bg-center relative min-h-150 sm:min-h-175 mb-8 sm:mb-12">
-      {/* Launching Soon Badge */}
+      {/* ADD THIS DARK OVERLAY - Makes background image less bright */}
+      <div className="absolute inset-0 bg-black/5 z-0"></div>
+      
+      {/* Launching Soon Badge - Add z-10 to keep content above overlay */}
       <div className="relative z-10">
         <div className="inline-flex items-center justify-center mb-4 rounded-full bg-white p-2">
           <div className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-100 px-4 py-2">
@@ -44,12 +48,12 @@ export default function Hero({ onJoinClick }: HeroProps) {
         </div>
       </div>
 
-      {/* Mobile images with animation */}
+      {/* Mobile images with animation - Keep as is */}
       <div
         ref={ref}
-        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full flex justify-center items-end overflow-hidden px-4"
+        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full flex justify-center items-end overflow-hidden px-4 z-10"
       >
-        {/* First Mobile Image - Slides up from bottom */}
+        {/* First Mobile Image */}
         <motion.div
           className="relative mr-2 sm:mr-12"
           initial={{ y: 100, opacity: 0 }}
@@ -65,7 +69,6 @@ export default function Hero({ onJoinClick }: HeroProps) {
           />
         </motion.div>
 
-        {/* Main Center Mobile Image */}
         <motion.div
           className="relative mx-2 sm:mx-6"
           initial={{ y: 100, opacity: 0 }}
@@ -81,7 +84,6 @@ export default function Hero({ onJoinClick }: HeroProps) {
           />
         </motion.div>
 
-        {/* Third Mobile Image */}
         <motion.div
           className="relative ml-2 sm:ml-12"
           initial={{ y: 100, opacity: 0 }}

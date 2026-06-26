@@ -1,4 +1,3 @@
-// app/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -27,7 +26,7 @@ export default function Home() {
       {/* Add gap after Hero */}
       <div className="mt-8 sm:mt-12"></div>
 
-      {/* Exclusive Benefits Section - Slides in from right */}
+      {/* Exclusive Benefits Section */}
       <ScrollReveal direction="right" delay={0.1}>
         <ExclusiveBenefits onJoinClick={() => setOpenModal(true)} />
       </ScrollReveal>
@@ -35,7 +34,7 @@ export default function Home() {
       {/* Add gap after ExclusiveBenefits */}
       <div className="mt-8 sm:mt-12"></div>
 
-      {/* Journey Section - Slides in from left */}
+      {/* Journey Section */}
       <ScrollReveal direction="left" delay={0.1}>
         <Journey onJoinClick={() => setOpenModal(true)} />
       </ScrollReveal>
@@ -43,7 +42,7 @@ export default function Home() {
       {/* Add gap after Journey */}
       <div className="mt-8 sm:mt-12"></div>
 
-      {/* Features Section - Slides up from bottom */}
+      {/* Features Section */}
       <ScrollReveal direction="up" delay={0.2}>
         <Features onJoinClick={() => setOpenModal(true)} />
       </ScrollReveal>
@@ -51,15 +50,13 @@ export default function Home() {
       {/* Add gap after Features */}
       <div className="mt-8 sm:mt-12"></div>
 
-      {/* FAQ Section - Fade in */}
+      {/* FAQ Section */}
       <ScrollReveal direction="fade" delay={0.3}>
         <FAQ />
       </ScrollReveal>
 
-      {/* Footer - Slides up from bottom */}
-      <ScrollReveal direction="up" delay={0.1}>
-        <Footer />
-      </ScrollReveal>
+      {/* Footer */}
+      <Footer onJoinClick={() => setOpenModal(true)} />
 
       {/* Waitlist Modal */}
       <WaitlistModal open={openModal} setOpen={setOpenModal} />

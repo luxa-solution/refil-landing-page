@@ -48,6 +48,7 @@ export default function ExclusiveBenefits({
           </div>
         </ScrollReveal>
 
+        {/* Cards with equal heights */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {benefits.map((benefit, index) => (
             <ScrollReveal 
@@ -57,6 +58,7 @@ export default function ExclusiveBenefits({
               once={true}
             >
               <div className="relative bg-white rounded-3xl px-6 pt-10 pb-10 text-center shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
+                {/* Icon - Inside card, not on border */}
                 <div className="flex justify-center mb-6">
                   <Image
                     src="/icons/mark-icon.png"
@@ -67,7 +69,11 @@ export default function ExclusiveBenefits({
                   />
                 </div>
 
-                <h3 className="text-orange-500 font-semibold mb-4">
+                {/* Heading color updated to #F88718 */}
+                <h3 
+                  className="font-semibold mb-4"
+                  style={{ color: '#F88718' }}
+                >
                   {benefit.title}
                 </h3>
 

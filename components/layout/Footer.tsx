@@ -1,14 +1,20 @@
+// components/layout/footer.tsx
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
+import Button from "../ui/Button";
 import ScrollReveal from "../animations/ScrollReveal";
 
-export default function Footer() {
+interface FooterProps {
+  onJoinClick?: () => void;
+}
+
+export default function Footer({ onJoinClick }: FooterProps) {
   return (
-    <footer className="border-t mt-20">
+    <footer className="border-t mt-8 sm:mt-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14">
-        <div className="grid gap-12 md:grid-cols-3 items-start">
+        <div className="grid gap-12 md:grid-cols-2 items-start">
           
           {/* LEFT - Slides from left */}
           <ScrollReveal direction="left" delay={0.1}>
@@ -60,42 +66,31 @@ export default function Footer() {
             </div>
           </ScrollReveal>
 
-          {/* CENTER - Slides up */}
-          <ScrollReveal direction="up" delay={0.2}>
-            <div className="flex flex-col gap-6 text-sm text-gray-700 md:items-center">
+          {/* RIGHT - Slides from right (Left aligned) */}
+          <ScrollReveal direction="right" delay={0.3}>
+            <div className="flex flex-col gap-6 text-sm md:items-start">
+              {/* Only Home and Contact Us links */}
               <div className="flex flex-wrap gap-6">
-                <Link href="/" className="cursor-pointer hover:text-black transition-colors hover:scale-105 transform duration-200 inline-block">
+                <Link href="/" className="cursor-pointer hover:text-black transition-colors hover:scale-105 transform duration-200 inline-block text-gray-700">
                   Home
                 </Link>
-                <span className="cursor-pointer hover:text-black transition-colors hover:scale-105 transform duration-200 inline-block">
-                  About Us
-                </span>
-                <Link href="/contact" className="cursor-pointer hover:text-black transition-colors hover:scale-105 transform duration-200 inline-block">
+                <Link href="/contact" className="cursor-pointer hover:text-black transition-colors hover:scale-105 transform duration-200 inline-block text-gray-700">
                   Contact Us
                 </Link>
-                <span className="cursor-pointer hover:text-black transition-colors hover:scale-105 transform duration-200 inline-block">
-                  Our Partners
-                </span>
               </div>
-
-              <div className="flex gap-6 text-gray-500">
-                <span className="cursor-pointer hover:text-black transition-colors hover:scale-105 transform duration-200 inline-block">
-                  Terms & privacy
-                </span>
-                <span className="cursor-pointer hover:text-black transition-colors hover:scale-105 transform duration-200 inline-block">
-                  Privacy
-                </span>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* RIGHT - Slides from right */}
-          <ScrollReveal direction="right" delay={0.3}>
-            <div className="flex flex-col gap-6 text-sm text-gray-500 md:items-end">
-              <p>© Refil 2026 - All Rights Reserved by Refil</p>
-              <span className="cursor-pointer text-gray-700 hover:text-black transition-colors hover:scale-105 transform duration-200 inline-block">
-                Join the waitlist
-              </span>
+              
+              {/* Copyright text - Left aligned */}
+              <p className="text-gray-500">© Refil 2026 - All Rights Reserved by Refil</p>
+              
+              {/* Join the waitlist as a BUTTON */}
+              {onJoinClick && (
+                <Button 
+                  onClick={onJoinClick}
+                  className="mt-2"
+                >
+                  Join the waitlist
+                </Button>
+              )}
             </div>
           </ScrollReveal>
         </div>

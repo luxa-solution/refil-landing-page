@@ -67,7 +67,6 @@ export default function Contact() {
           message: result.message || "✅ Message sent successfully! We'll get back to you soon." 
         });
         
-  
         setFormData({ 
           name: "", 
           email: "", 
@@ -75,7 +74,6 @@ export default function Contact() {
           message: "" 
         });
         
-      
         setTimeout(() => {
           setStatus({ type: null, message: "" });
         }, 5000);
@@ -97,16 +95,17 @@ export default function Contact() {
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 py-24">
-      <div className="hidden md:block mb-20">
-        <ScrollReveal direction="down" delay={0.1}>
+      {/* Top Contact Card - Desktop only (hidden on mobile) */}
+      <ScrollReveal direction="down" delay={0.1}>
+        <div className="hidden md:block mb-20">
           <TopContactCard />
-        </ScrollReveal>
-      </div>
+        </div>
+      </ScrollReveal>
 
       <div className="flex flex-col md:grid md:grid-cols-2 md:gap-16 md:items-start">
         
-        {/* FAQ */}
-        <div className="order-1 md:order-1 mb-12 md:mb-0">
+        {/* FAQ - Left on desktop, LAST on mobile */}
+        <div className="order-3 md:order-1 mt-12 md:mt-0">
           <div className="space-y-6">
             {faqs.map((faq, index) => (
               <ScrollReveal 
@@ -125,17 +124,17 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Top Contact Card */}
-        <div className="order-2 md:hidden mb-12">
+        {/* Top Contact Card - Mobile only (hidden on desktop) */}
+        <div className="order-2 md:hidden mb-10">
           <ScrollReveal direction="up" delay={0.2}>
-            <TopContactCard /> 
+            <TopContactCard />
           </ScrollReveal>
         </div>
 
-        {/* Contact Form  */}
-        <div className="order-3 md:order-2">
+        {/* Contact Form - Right on desktop, FIRST on mobile */}
+        <div className="order-1 md:order-2 mb-12 md:mb-0">
           <ScrollReveal direction="right" delay={0.3}>
-            <div className="bg-white rounded-3xl p-6 md:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
+            <div className="bg-white rounded-3xl p-6 md:p-10 border border-gray-200">
               <form onSubmit={handleSubmit} className="space-y-6">
                 
                 {/* Status Message */}

@@ -40,9 +40,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased overflow-x-hidden w-full font-montserrat`}
+        className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased w-full font-montserrat`}
       >
         {children}
       </body>
